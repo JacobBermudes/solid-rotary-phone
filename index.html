@@ -6,8 +6,13 @@
     <title>Сайт-витрина</title>
     <style>
         /* Общие стили */
-        .p {
+        body {
             color: var(--tg-theme-text-color);
+            background: var(--tg-theme-bg-color);
+        }
+
+        .p {
+            /*color: var(--tg-theme-text-color);*/
             font-size: large;
         }
         .product-container {
@@ -41,6 +46,8 @@
 
     <script>
         // Функция для генерации HTML-кода товаров из массива
+        const tg = window.Telegram.WebApp;
+
         function renderProducts(products) {
             const productContainer = document.getElementById("productContainer");
 
@@ -98,6 +105,7 @@
 
         // Генерация витрины с товарами из массива
         renderProducts(productsArray);
+        tg.expand();
     </script>
 </body>
 </html>
