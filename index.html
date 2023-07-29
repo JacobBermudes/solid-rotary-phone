@@ -22,7 +22,7 @@
         }
 
         .product {
-            width: 200px;
+            width: 180px;
             height: 270px;
             border: 1px solid #ccc;
             padding: 2px;
@@ -101,6 +101,8 @@
 
                 productGrid.appendChild(productCell);
             });
+            const tg = window.Telegram.WebApp;
+            tg.expand();
         }
 
         // Функция-обработчик клика по кнопке "Купить"
@@ -137,10 +139,7 @@
         // Генерация сетки с товарами из массива
         renderProducts(productsArray);
     </script>
-    <script>
-        const tg = window.Telegram.WebApp;
-        tg.expand();
-    </script>
+
 </body>
 
 </html>
