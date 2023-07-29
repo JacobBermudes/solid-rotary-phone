@@ -6,60 +6,68 @@
     <title>Сайт-витрина</title>
     <style>
         /* Общие стили */
-        body {
-            color: var(--tg-theme-text-color);
-            background: var(--tg-theme-bg-color);
-        }
-
-        .p {
-            /*color: var(--tg-theme-text-color);*/
-            font-size: large;
-        }
-        .product-container {
+        .product-grid {
             display: flex;
             flex-wrap: wrap;
-            justify-content: left;
-            background-color: var(--tg-theme-bg-color);
+            justify-content: flex-start;
+            align-content: center;
+            max-width: 500px;
+            
         }
 
         .product {
-            width: 250px;
-            margin-bottom: 10px;
+            width: 150px;
+            height: 200px;
             border: 1px solid #ccc;
             padding: 10px;
-            background-color: var(--tg-theme-bg-color);
+            margin-bottom: 10px;
+            display: flex;
+            flex-direction: column;
+            justify-content: space-between;
+            text-align: center;
         }
 
         img {
-            max-width: 250px;
-            max-height: 250px;
+            max-width: 100%;
+            max-height: 100px;
+            object-fit: cover;
         }
 
-        button {
-            color: var(--tg-theme-button-text-color);
-            background: var(--tg-theme-button-color);
+        h3 {
+            margin: 0;
         }
 
+        /* Стили для кнопки */
+        .buy-button {
+            background-color: #007bff;
+            color: #fff;
+            border: none;
+            padding: 5px 10px;
+            cursor: pointer;
+        }
+
+        /* Стили для мобильных устройств */
+        @media (max-width: 350px) {
+            .product {
+                width: 48%;
+            }
+        }
     </style>
 </head>
 <body>
-    <h1>Top buds phuket</h1>
-    <div class="product-container" id="productContainer">
-        <!-- Элементы товаров будут добавлены здесь -->
+    <h1>Top phuket buds</h1>
+    <div class="product-grid" id="productGrid">
+        <!-- Ячейки товаров будут добавлены здесь -->
     </div>
-
-    <script src="https://telegram.org/js/telegram-web-app.js"></script>
 
     <script>
         // Функция для генерации HTML-кода товаров из массива
-        const tg = window.Telegram.WebApp;
-
         function renderProducts(products) {
-            const productContainer = document.getElementById("productContainer");
+            const productGrid = document.getElementById("productGrid");
 
             products.forEach((product, index) => {
-                const productDiv = document.createElement("div");
-                productDiv.classList.add("product");
+                const productCell = document.createElement("div");
+                productCell.classList.add("product");
 
                 const productImage = document.createElement("img");
                 productImage.src = product.image;
@@ -68,28 +76,27 @@
                 const productName = document.createElement("h2");
                 productName.textContent = product.name;
 
-                const productDescription = document.createElement("p");
-                productDescription.textContent = product.description;
+                const productPrice = document.createElement("h3");
+                productPrice.textContent = product.price;
 
                 const buyButton = document.createElement("button");
                 buyButton.textContent = "Купить";
+                /*buyButton.classList.add("buy-button");*/
                 buyButton.addEventListener("click", () => {
                     handleButtonClick(index + 1);
                 });
 
-                productDiv.appendChild(productImage);
-                productDiv.appendChild(productName);
-                productDiv.appendChild(productDescription);
-                productDiv.appendChild(buyButton);
+                productCell.appendChild(productImage);
+                productCell.appendChild(productName);
+                productCell.appendChild(productPrice);
+                productCell.appendChild(buyButton);
 
-                productContainer.appendChild(productDiv);
+                productGrid.appendChild(productCell);
             });
         }
 
         // Функция-обработчик клика по кнопке "Купить"
         function handleButtonClick(productNumber) {
-            const tg = window.Telegram.WebApp;
-            console.log(`Params: ${tg.version}`);
             console.log(`Нажата кнопка Купить для товара ${productNumber}`);
         }
 
@@ -98,20 +105,29 @@
             {
                 image: "images/picture1.jpeg",
                 name: "Товар 1",
-                description: "Отличные шишки"
+                price: "1200 rub",
             },
             {
                 image: "images/picture2.jpeg",
                 name: "Товар 2",
-                description: "Неочень шишки"
+                price: "1300 rub",
+            },
+            {
+                image: "images/picture1.jpeg",
+                name: "Товар 3",
+                price: "1400 rub",
+            },
+            {
+                image: "images/picture1.jpeg",
+                name: "Товар 4",
+                price: "1500 rub",
             },
             // Добавьте остальные товары по аналогии
             // ...
         ];
 
-        // Генерация витрины с товарами из массива
+        // Генерация сетки с товарами из массива
         renderProducts(productsArray);
-        tg.expand();
     </script>
 </body>
 </html>
