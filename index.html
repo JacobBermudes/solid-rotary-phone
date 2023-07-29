@@ -6,34 +6,35 @@
     <title>Сайт-витрина</title>
     <style>
         /* Общие стили */
+        .p {
+            color: var(--tg-theme-text-color);
+            font-size: large;
+        }
         .product-container {
             display: flex;
             flex-wrap: wrap;
-            justify-content: space-around;
+            justify-content: left;
+            background-color: var(--tg-theme-bg-color);
         }
 
         .product {
-            width: 300px;
+            width: 250px;
             margin-bottom: 10px;
             border: 1px solid #ccc;
             padding: 10px;
+            background-color: var(--tg-theme-bg-color);
         }
 
         img {
-            max-width: 200px;
-            max-height: 200px;
+            max-width: 250px;
+            max-height: 250px;
         }
 
-        /* Стили для мобильных устройств */
-        @media (max-width: 600px) {
-            .product {
-                width: 100%;
-            }
-        }
     </style>
+    <script src="https://telegram.org/js/telegram-web-app.js"></script>
 </head>
 <body>
-    <h1>Сайт-витрина с двумя элементами в строке</h1>
+    <h1>Top buds phuket</h1>
     <div class="product-container" id="productContainer">
         <!-- Элементы товаров будут добавлены здесь -->
     </div>
@@ -82,12 +83,12 @@
             {
                 image: "images/picture1.jpeg",
                 name: "Товар 1",
-                description: "Описание товара 1."
+                description: "Отличные шишки"
             },
             {
                 image: "images/picture2.jpeg",
                 name: "Товар 2",
-                description: "Описание товара 2."
+                description: "Неочень шишки"
             },
             // Добавьте остальные товары по аналогии
             // ...
