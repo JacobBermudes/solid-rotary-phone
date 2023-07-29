@@ -75,6 +75,8 @@
 
         // Функция-обработчик клика по кнопке "Купить"
         function handleButtonClick(productNumber) {
+            const tg = window.Telegram.WebApp;
+            console.log(`Params: ${tg.version}`);
             console.log(`Нажата кнопка Купить для товара ${productNumber}`);
         }
 
