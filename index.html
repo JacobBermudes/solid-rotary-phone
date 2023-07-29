@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Сайт-витрина</title>
+    <style>
+        /* Добавьте здесь стили для мобильных устройств */
+    </style>
+</head>
+<body>
+    <h1>Сайт-витрина с 6 товарами</h1>
+    <div class="product">
+        <img src="product1.jpg" alt="Товар 1">
+        <h2>Товар 1</h2>
+        <p>Описание товара 1.</p>
+        <button onclick="handleButtonClick(1)">Купить</button>
+    </div>
+    <div class="product">
+        <img src="product2.jpg" alt="Товар 2">
+        <h2>Товар 2</h2>
+        <p>Описание товара 2.</p>
+        <button onclick="handleButtonClick(2)">Купить</button>
+    </div>
+    <!-- Аналогично добавьте обработчики на остальные кнопки -->
+    <!-- ... -->
+    <script>
+        function handleButtonClick(productNumber) {
+            console.log(`Нажата кнопка Купить для товара ${productNumber}`);
+        }
+    </script>
+</body>
+</html>
