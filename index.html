@@ -10,27 +10,29 @@
 </head>
 
 <body>
-
+    <div class="container"><h1>Top phuket buds!</h1></div>
     <div class="container">
-        <div class="row">
-            <div class="col-sm-6 col-xs-6 col-6" id="mainMenu">
-              
-            </div>
-
-            <div class="col-sm-6 col-xs-6 col-6" id="mainMenu2">
-              
-            </div>
-
-          </div>
+        <div class="row content-justify-center" id="productTable"></div>
     </div>
 
     <script>
+
         // Функция для генерации HTML-кода товаров из массива
         function renderProducts(products) {
-            const productGrid = document.getElementById("mainMenu");
-            const productGrid2 = document.getElementById("mainMenu2");
+            const productGrid = document.getElementById("productTable");
+
+            const columnLeft = document.createElement("div")
+            columnLeft.classList.add("col-sm-6");
+            columnLeft.classList.add("col-xs-6");
+            columnLeft.classList.add("col-6");
+
+            const columnRight = document.createElement("div")
+            columnRight.classList.add("col-sm-6");
+            columnRight.classList.add("col-xs-6");
+            columnRight.classList.add("col-6");
 
             products.forEach((product, index) => {
+
                 const productCell = document.createElement("div");
                 productCell.classList.add("card");
 
@@ -55,10 +57,10 @@
                 button.classList.add("btn-primary");
                 button.href = "#";
                 button.textContent = `${product.price} RUB`;
-                button.addEventListener("click", ()=>{
+                button.addEventListener("click", () => {
                     handleButtonClick(index + 1);
                 });
-                
+
                 cardBody.appendChild(productImage);
                 cardBody.appendChild(cardTitle);
                 cardBody.appendChild(cardDescribe);
@@ -66,14 +68,16 @@
 
                 productCell.appendChild(cardBody);
                 if (index % 2 == 1) {
-                    productGrid.appendChild(productCell);
+                    columnLeft.appendChild(productCell);
                 } else {
-                    productGrid2.appendChild(productCell);    
+                    columnRight.appendChild(productCell);
                 };
-                
+
             });
-            const tg = window.Telegram.WebApp;
-            tg.expand();
+
+            productGrid.appendChild(columnLeft);
+            productGrid.appendChild(columnRight);
+
         }
 
         // Функция-обработчик клика по кнопке "Купить"
@@ -109,6 +113,8 @@
 
         // Генерация сетки с товарами из массива
         renderProducts(productsArray);
+        const tg = window.Telegram.WebApp;
+        tg.expand();
     </script>
 
     <!-- Подключение Bootstrap JS (необходимо для работы интерактивных элементов) -->
