@@ -4,102 +4,72 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Сайт-витрина</title>
-    <script src="https://telegram.org/js/telegram-web-app.js"></script>
-    <style>
-        /* Общие стили */
-        body {
-            background-color: var(--tg-theme-bg-color);
-            color: var(--tg-theme-text-color);
-        }
-
-        .product-grid {
-            display: flex;
-            flex-wrap: wrap;
-            justify-content: space-around;
-            align-content: center;
-
-        }
-
-        .product {
-            width: 180px;
-            height: 270px;
-            border: 1px solid #ccc;
-            padding: 2px;
-            display: flex;
-            flex-direction: column;
-            justify-content: space-between;
-            text-align: center;
-        }
-
-        img {
-            max-width: 100%;
-            max-height: 180px;
-            object-fit: contain;
-        }
-
-        h3 {
-            margin: 0;
-        }
-
-        h2 {
-            margin: 0;
-        }
-
-        /* Стили для кнопки */
-        .buy-button {
-            background: var(--tg-theme-button-color);
-            color: var(--tg-theme-button-text-color);
-            display: inline-block;
-            padding: 4px;
-            border-radius: 10px;
-            text-decoration: none;
-            font-family: Tahoma;
-            font-size: 14px;
-            line-height: 1;
-            font-weight: 100;
-        }
-    </style>
+    <title>Макет витрины сайта</title>
+    <!-- Подключение Bootstrap CSS -->
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
 </head>
 
 <body>
-    <h1>Top phuket buds</h1>
-    <div class="product-grid" id="productGrid">
-        <!-- Ячейки товаров будут добавлены здесь -->
+
+    <div class="container">
+        <div class="row">
+            <div class="col-sm-6" id="mainMenu">
+              
+            </div>
+
+            <div class="col-sm-6" id="mainMenu2">
+              
+            </div>
+
+          </div>
     </div>
-    <script src="https://telegram.org/js/telegram-web-app.js"></script>
+
     <script>
         // Функция для генерации HTML-кода товаров из массива
         function renderProducts(products) {
-            const productGrid = document.getElementById("productGrid");
+            const productGrid = document.getElementById("mainMenu");
+            const productGrid2 = document.getElementById("mainMenu2");
 
             products.forEach((product, index) => {
                 const productCell = document.createElement("div");
-                productCell.classList.add("product");
+                productCell.classList.add("card");
 
                 const productImage = document.createElement("img");
+                productImage.classList.add("card-img-top");
                 productImage.src = product.image;
                 productImage.alt = `Товар ${index + 1}`;
 
-                const productName = document.createElement("h2");
-                productName.textContent = product.name;
+                const cardBody = document.createElement("div");
+                cardBody.classList.add("card-body");
 
-                const productPrice = document.createElement("h3");
-                productPrice.textContent = product.price;
+                const cardTitle = document.createElement("h5");
+                cardTitle.classList.add("card-title");
+                cardTitle.textContent = product.name;
 
-                const buyButton = document.createElement("button");
-                buyButton.textContent = "Купить";
-                buyButton.classList.add("buy-button");
-                buyButton.addEventListener("click", () => {
+                const cardDescribe = document.createElement("p");
+                cardDescribe.classList.add("card-text");
+                cardDescribe.textContent = "Some buds";
+
+                const button = document.createElement("a");
+                button.classList.add("btn");
+                button.classList.add("btn-primary");
+                button.href = "#";
+                button.textContent = `${product.price} RUB`;
+                button.addEventListener("click", ()=>{
                     handleButtonClick(index + 1);
                 });
+                
+                cardBody.appendChild(cardTitle);
+                cardBody.appendChild(cardDescribe);
+                cardBody.appendChild(button);
 
-                productCell.appendChild(productImage);
-                productCell.appendChild(productName);
-                productCell.appendChild(productPrice);
-                productCell.appendChild(buyButton);
-
-                productGrid.appendChild(productCell);
+                productCell.appendChild(cardBody);
+                if (index % 2 == 1) {
+                    productGrid.appendChild(productCell);
+                } else {
+                    productGrid2.appendChild(productCell);    
+                };
+                
             });
             const tg = window.Telegram.WebApp;
             tg.expand();
@@ -115,22 +85,22 @@
             {
                 image: "images/picture1.jpeg",
                 name: "Товар 1",
-                price: "1200 rub",
+                price: "1200",
             },
             {
                 image: "images/picture2.jpeg",
                 name: "Товар 2",
-                price: "1300 rub",
+                price: "1300",
             },
             {
                 image: "images/picture1.jpeg",
                 name: "Товар 3",
-                price: "1400 rub",
+                price: "1400",
             },
             {
                 image: "images/picture1.jpeg",
                 name: "Товар 4",
-                price: "1500 rub",
+                price: "1500",
             },
             // Добавьте остальные товары по аналогии
             // ...
@@ -139,6 +109,11 @@
         // Генерация сетки с товарами из массива
         renderProducts(productsArray);
     </script>
+
+    <!-- Подключение Bootstrap JS (необходимо для работы интерактивных элементов) -->
+    <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.9.1/dist/umd/popper.min.js"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
 
 </body>
 
